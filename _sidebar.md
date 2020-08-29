@@ -9,4 +9,4 @@
 
 - [🕶 **Docsify**]()
 - - [- Docsify blog 만들기](./docsify/docsify.md)
-- - [- netlify 배포하기]()
+- - [- netlify 배포하기](./docsify/netlify.md)
