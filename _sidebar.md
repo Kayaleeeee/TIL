@@ -1,4 +1,4 @@
-- [Home](/)
+- [Home](_coverpage.md)
 
 - Post
 
