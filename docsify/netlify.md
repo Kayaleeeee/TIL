@@ -81,8 +81,15 @@ netlify dev ---live
    └─────────────────────────────────────────────────┘
 ```
 
-문제 없으면 배포
+문제 없으면 배포 하기~!~!
 
 ```bash
+netlify deploy -p
+```
+
+#### git file 수정 후 재 업로드
+
+```bash
+netlify deploy
 netlify deploy -p
 ```
