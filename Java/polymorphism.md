@@ -62,10 +62,42 @@ Child child = (Child)parent; // 강제 타입 변환
 
 ```
 
-#### 객체 타입 확인 instanceof
+#### 🦊 객체 타입 확인 instanceof
 
 > - 강제 타입 변환은 자식 -> 부모로 타입 변환되어있는 상태에서만 사용 가능
+> - 처음부터 부모타입으로 생성된 객체는 자식타입으로 변환할 수 없음
 
+```java
+Parent parent = new Parent();
+Child child = (Child)parent; // 강제 타입변환 불가
 ```
 
+<br/>
+따라서, 부모변수가 참조하는 객체가 부모 / 자식인지 확인 할 수 있도록
+
+**instanceof** 를 사용하면 어떤 객체가 어떤 클래스의 인스턴스인지 확인이 가능하다.
+
+```java
+boolean result = Object1 instanceof Object2
+```
+
+<br>
+
+**예시)**
+Magazine, Novel, ReferenceBook을 자식클래스로 갖는 Publicaion을 생성한 후,
+각 객체의 타입에 따라 가격을 다르게 지정해줌
+
+```java
+public void modifyPrice(Publication p) {
+
+	if(p instanceof Magazine) {
+		p.setPrice((int)(p.getPrice() * 0.6));
+	}else if(p instanceof Novel) {
+		p.setPrice((int)(p.getPrice() * 0.8));
+	}else if(p instanceof ReferenceBook) {
+		p.setPrice((int)(p.getPrice() * 0.9));
+	}
+
+
+}
 ```

@@ -17,3 +17,4 @@
 - [🍎 **Java** ]()
 - - [- Java 왕기초](./Java/basic.md)
 - - [- Inheritance 상속](./Java/inheritance.md)
+- - [- Polymorphism 다형성](./Java/polymorphism.md)
