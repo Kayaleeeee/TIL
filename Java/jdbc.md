@@ -89,7 +89,7 @@ Statement stmt = con.createStatement();
 
 #### - Statement vs PreparedStatement
 
-> Statement는 두 가지 형식으로 작성할 수 있다.
+> - Statement는 두 가지 형식으로 작성 가능
 
 | 종류 | Statement                                             | PreparedStatement                                                   |
 | ---- | ----------------------------------------------------- | ------------------------------------------------------------------- |
@@ -144,12 +144,44 @@ catch (SQLException e) {
 
 <br>
 
-- execute 매소드 차이점
+#### - execute 매소드 차이점
+
+> - SQL전송시 사용되는 excute method 차이점 알아보기
 
 | execute()                                   | executeQuery()             | excuteUpdate()                                                                                        |
 | ------------------------------------------- | -------------------------- | ----------------------------------------------------------------------------------------------------- |
 | Boolean 타입을 반환                         | ResultSet 객체의 값을 반환 | Int 타입의 결과 값을 반환                                                                             |
 | return값이 ResultSet 이면 true 아니면 false | SQL select 실행 시 사용    | UPDATE, DELETE, INSERT 실행 시 사용 => **반영된 레코드의 수 만큼 반환** CREATE / DROP 실행 시 -1 반환 |
+
+<br>
+
+#### - append() & StringBuilder로 sql문 작성하기
+
+> - append와 StringBuilder로 sql문을 작성하고 대입하여 사용 가능
+
+```java
+public class StringBuilderTest {
+	public static void main(String[] args) {
+
+
+	StringBuilder builder = new StringBuilder();
+	builder.append("select EMPLOYEE_ID, FIRST_NAME, HIRE_DATE, DEPARTMENT_NAME")
+	.append("from EMPLOYEES e, DEPARTMENTS d")
+	.append("where e.DEPARTMENT_ID = d.DEPARTMENT_ID")
+	.append("and FIRST_NAME like '%Da%'") //query안에 넣거나 args로 받아오거나;
+	.append("order by EMPLOYEE_ID desc");
+
+	String sql = builder.toString();
+	System.out.println(sql);
+
+	}
+}
+
+// select EMPLOYEE_ID, FIRST_NAME, HIRE_DATE, DEPARTMENT_NAME /// from EMPLOYEES e, DEPARTMENTS d
+// where e.DEPARTMENT_ID = d.DEPARTMENT_ID and FIRST_NAME like '%Da%'
+// order by EMPLOYEE_ID desc
+
+```
 
 <br>
 
