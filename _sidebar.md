@@ -26,4 +26,6 @@
 - - [- Abstract 추상화](./java/abstract.md)
 - - [- Interface 인터페이스](./Java/interface.md)
 - - [- Collection 컬렉션](./Java/collection.md)
-- - [- JDBC 오라클 연동하기](./Java/jdbc.md)
+- - [- JDBC 오라클 연동하기](./Java/jdbc_oracle.md)
+- - [- JDBC MongoDB 연동하기](./Java/mongo_jdbc.md)
+- - [- Properties 파일로 JDBC 연동하기](./Java/jdbc_props.md)
