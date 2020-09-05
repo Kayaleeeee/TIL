@@ -15,7 +15,6 @@
 > - 변수와 증감식을 사용하여 설정한 반복 횟수이 되면 반복문을 빠져나감
 
 ```java
-
     for(int i = 0; i<반복 횟수; i++){
         반복 할 내용
     }
@@ -27,7 +26,6 @@
 > - 배열 및 컬렉션 내의 항목 개수만큼 반복하고 for문을 빠져나감
 
 ```java
-
     for(타입변수 : 배열){
         반복 할 내용
     }
@@ -38,7 +36,6 @@
 예시
 
 ```java
-
 //기본 반복문
 // 100까지 합 구하기
 
@@ -48,13 +45,13 @@ for(int i =0; i =< 100; i++){
 }
 
 //향상된 반복문
+// 배열 내의 scores 합 구하기
 
-int [] scores = {90, 71, 84, 93, 87 }
-for(int )
-
-
-
-
+int [] scores = {90, 71, 84, 93, 87}
+int sum = 0;
+for(int score : scores){
+    sum+= score
+}
 ```
 
 <br>
@@ -70,7 +67,6 @@ for(int )
 #### - 사용법
 
 ```java
-
     Iterator<객체 타입> iteratorName = ArrayListName.iterator()
 ```
 
