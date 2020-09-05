@@ -218,15 +218,14 @@ collection.deleteOne(query2);
 
 <br>
 
-### 8. Dropping a Collection
+### 8. Collection 드롭하기 : drop()
 
->
 
 ```java
 
 MongoCollection<Document> collection = database.getCollection("sampleCollection");
 
-    // Dropping a Collection
+// Dropping a Collection
 collection.drop();
 System.out.println("Collection dropped successfully");
 ```
