@@ -34,4 +34,4 @@
     <br />
 
 - [🌱 **Spring** ]()
-- - [- DI & IoC 의존성 주입가 제어의 역전](./Spring/di_ioc.md)
+- - [- DI & IoC 의존성 주입과 제어의 역전](./Spring/di_ioc.md)
