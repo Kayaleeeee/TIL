@@ -35,3 +35,6 @@
 
 - [🌱 **Spring** ]()
 - - [- DI & IoC 의존성 주입과 제어의 역전](./Spring/di_ioc.md)
+
+- - [- 스프링 기초](./Spring/spring_basic.md)
+- - [- 프레임워크 vs 라이브러리](./Spring/frame_vs_lib.md)
