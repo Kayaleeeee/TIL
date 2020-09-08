@@ -49,6 +49,21 @@
 1. 생성자(constructor)를 통한 의존성 주입
    > 필요 의존성을 포함하는 생성자를 만들고, 이를 통해 의존성 주입
 2. setter 매소드를 통한 의존성 주입
+
    > 의존성을 입력받는 setter 매소드를 통해 의존성 주입
+   > 의존관계가 있는 bean주입시 ref, 단순 값 전달 시 value 사용
+
+   ```java
+   <!-- Hello 클래스의 id를 주고, class로 클래스 위치를 전달 -->
+   <!-- setName(), setPrinter() 매소드 => property로 설정 -->
+   <!-- value는 값 전달 setName(value)-->
+   <!-- ref는 strPrinter라는 id를 가진 bean을 참조한다는 뜻 -->
+
+   <bean id="hello" class="myspring.di.xml.Hello" scope="singleton">
+   <property name="name" value="spring" />
+   <property name="printer" ref="strPrinter" />
+   </bean>
+   ```
+
 3. 일반 매소드를 통한 의존성 주입
    > 의존성을 입력받는 일반 매소드를 만들어 의존성 주입
