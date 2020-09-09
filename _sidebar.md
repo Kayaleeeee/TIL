@@ -39,3 +39,4 @@
 - - [- 프레임워크 vs 라이브러리](./Spring/frame_vs_lib.md)
 - - [- jUnit 단위 테스트](./Spring/junit.md)
 - - [- Bean 등록 메타정보 구성 전략](./Spring/bean_strategy.md)
+- - [- MyBatis 마이바티스 사용하기](./Spring/mybatis.md)
