@@ -58,7 +58,6 @@ Class.forName("oracle.jbbc.driver.OracleDirver");
 [오라클의 hr/hr에 연결]
 
 ```java
-
 	String url = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
 	String user = "hr";
 	String password = "hr";
@@ -66,7 +65,6 @@ Class.forName("oracle.jbbc.driver.OracleDirver");
     	public Connection getConnection() throws SQLException {
 		return DriverManager.getConnection(url, user, password);
 	}
-
 ```
 
 <br>
@@ -78,12 +76,10 @@ Class.forName("oracle.jbbc.driver.OracleDirver");
 > - 여기서 만들어진 statement로 sql 작업 실행
 
 ```java
-
 //getConnection으로 만든 인스턴스에 statement 생성
 
 Connection con = getConnection();
 Statement stmt = con.createStatement();
-
 ```
 
 <br>
@@ -129,7 +125,6 @@ pstmt.executeUpdate();
 > - 예외처리를 위해 try ~ catch / throws 와 함께 사용
 
 ```java
-
 try {
     Connection con = getConnection();
     Statement stmt = con.createStatement();
@@ -191,7 +186,6 @@ public class StringBuilderTest {
 > - query 실행 후 결과를 ResultSet(Select) 혹은 int형 변수로 받아서 처리
 
 ```java
-
  Connection con = getConnection();
  Statement stmt = con.createStatement();
 
@@ -199,7 +193,6 @@ public class StringBuilderTest {
 
 if(rs.next()) {
     System.out.println(rs.getString("first_name") + " " + rs.getString("salary")); }
-
 ```
 
 <br >

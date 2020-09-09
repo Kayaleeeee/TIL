@@ -124,12 +124,12 @@ public class StringPrinter implements Printer {
 
 **[Bean 등록 Annotation]**
 
-| Annotation  | 기능                                                                             |
-| ----------- | -------------------------------------------------------------------------------- |
-| @Component  | - 컴포넌트를 나타내는 일반적인 스테레오 타입<br> - Bean 태그와 동일한역할        |
-| @Repository | - Persistance 레이어 <br> - 영속성을 같는 속성(파일, 데이터베이스)을 갖는 클래스 |
-| @Service    | - 서비스 레이어, 비지니스 로직을 갖는 클래스                                     |
-| @Controller | - 프레젠테이션 레이어 <br> - 웹 어플리케이션의 요청과 응답 처리                  |
+| Annotation  | 기능                                                                                         |
+| ----------- | -------------------------------------------------------------------------------------------- |
+| @Component  | - 컴포넌트를 나타내는 일반적인 스테레오 타입<br> - Bean 태그와 동일한역할                    |
+| @Repository | - Persistance 레이어 (DB연결 등) <br> - 영속성을 같는 속성(파일, 데이터베이스)을 갖는 클래스 |
+| @Service    | - 서비스 레이어, 비지니스 로직을 갖는 클래스                                                 |
+| @Controller | - 프레젠테이션 레이어 <br> - 웹 어플리케이션의 요청과 응답 처리                              |
 
 <br >
 
@@ -212,7 +212,7 @@ public class StringPrinter implements Printer {
 **[Bean등록과 설정 Annotaion]**
 | Annotaion | 기능 |
 |---------|----|
-| @Bean | - 새로운 빈 객체 제공시 사용 <br> - @Bean이 적용된 매소드의 이름을 Bean의 식별값으로 사용 <br> - @Component와 같은 역할이나 @Component는 클래스위에, @Bean은 매소드 위에 선언 |
+| @Bean | - 새로운 빈 객체 제공시 사용 <br> - @Bean이 적용된 매소드의 이름이 Bean의 ID가 됨 <br> - @Component와 같은 역할이나 @Component는 클래스위에, @Bean은 매소드 위에 선언 |
 | @Configuration | - config Class 생성시 XML을 대체하는 역할 <br> - @Component처럼 빈 스캔으로 자동 검색됨 <br> - @Configuration을 선언한 클래스도 Bean으로 정의됨 (스프링 IoC로 인해)
 
 <br>
@@ -308,6 +308,10 @@ public class HelloBeanConfig {
 > - 하지만 프로퍼티 값으로 제공되는 일부 설정정보는 어플리케이션 동작환경에 따라 자주 바뀔수 있음
 
 <br>
+
+| Annotion        | 기능                                                       |
+| --------------- | ---------------------------------------------------------- |
+| @PropertySource | - .properties 파일 경로를 지정해줌 <br> - "classpath:경로" |
 
 [values.propterties] 확장자 : .properties
 

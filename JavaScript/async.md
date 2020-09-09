@@ -18,7 +18,7 @@
 
 #### async function 작성법
 
-```node
+```javascript
 async function functionName(params) {
   statements;
 }
@@ -31,7 +31,7 @@ async function functionName(params) {
 
 #### 사용 예시 (MDN 사이트 참조)
 
-```node
+```javascript
 //2초 후 실행되는 함수
 function resolveAfter2Seconds() {
   return new Promise((resolve) => {
@@ -57,7 +57,7 @@ asyncCall();
 
 > function이 끝나자마자 alert창이 뜨는게 싫어서 300정도 대기시간을 걸어놓음
 
-```node
+```javascript
 async function onSortNums() {
   await new Promise((resolve) =>
     setTimeout(() => {
