@@ -108,7 +108,7 @@ public class Parent{
 ```java
 public class Child extends Parent{
 
-    @Overrid
+    @Override
     public String getDetail(){
         return super.getDetail() + person.getSsn();
         //super로 부모클래스의 메소드를 받아오고 + 추가해줌

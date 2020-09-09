@@ -22,7 +22,7 @@
 - - [- Java 왕기초](./Java/basic.md)
 - - [- Inheritance 상속](./Java/inheritance.md)
 - - [- Polymorphism 다형성](./Java/polymorphism.md)
-- - [- Overload & Override](./Java/overloading.md)
+- - [- Overload & Override 오버로드 오버라이드](./Java/overloading.md)
 - - [- Abstract 추상화](./java/abstract.md)
 - - [- Interface 인터페이스](./Java/interface.md)
 - - [- Collection 컬렉션](./Java/collection.md)
