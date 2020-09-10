@@ -40,3 +40,4 @@
 - - [- jUnit 단위 테스트](./Spring/junit.md)
 - - [- Bean 등록 메타정보 구성 전략](./Spring/bean_strategy.md)
 - - [- MyBatis 마이바티스 사용하기](./Spring/mybatis.md)
+- - [- Servlet & JSP 서블릿과 JSP 사용하기](./Spring/servlet_jsp.md)
