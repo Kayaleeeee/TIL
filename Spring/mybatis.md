@@ -8,6 +8,11 @@
 > - SQL 파일을 별도로 분리하여 관리할 수 있고, 객체-SQL 사이의 파라미터를 자동으로 매핑해주기 때문에 편리
 > - SQL쿼리문을 그대로 사용하면서 도메인객체나 VO 객체 중심으로 개발이 가능
 
+### MyBatis-Spring이란?
+
+> - 마이바티스와 스프링을 연결해주는 역할
+> - 원래 마이바티스 설정파일 (ex> SqlMapConfig.xml)에 설정해야 할 DataSource 설정, Mapper설정파일정보 VO클래스 Aliasing
+
 **✔️ VO (Value Object)**
 
     - 객체의 값을 표현하기 위해 사용
@@ -72,17 +77,23 @@
 
 #### [MyBatis-Spring]
 
-| 컴포넌트                                | 역할                                                                                                                                                          |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| MyBatis 설정파일 <br>(SqlMapConfig.xml) | - VO 객체 정보 설정                                                                                                                                           |
-| SqlSessionFactoryBean                   | - MyBatis 설정파일을 바탕으로 SqlSessionFactory 생성 <br> - Spring Bean으로 등록해야 함                                                                       |
-| SqlSessionTemplate                      | - SQL실행 및 트렌잭션 관리를 실행하는 핵심적인 클래스 <br> - SqlSession 인터페이스 구현 / Thread-safe 함 <br > - Spring Bean으로 등록해야 함                  |
-| mapping 파일 <br> (userMapper.xml)      | - SQL문과 OR Mapping 설정                                                                                                                                     |
-| SpringBean 설정파일 <br > (beans.xml)   | - SqlSessionFactoryBean을 Bean으로 등록할 때, DataSource정보와 MyBatis Config 파일정보, Mapping 파일 정보를 함께 설정 <br> SqlSessionTemplate을 Bean으로 등록 |
+| 컴포넌트                                | 역할                                                                                                                                                                                                             |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| MyBatis 설정파일 <br>(SqlMapConfig.xml) | - VO 객체 정보 설정                                                                                                                                                                                              |
+| SqlSessionFactoryBean                   | - MyBatis 설정파일을 바탕으로 SqlSessionFactory 생성 <br> - Spring Bean으로 등록해야함 <br > - DataSourceBean의 ref,MyBatis 설정파일 정보, Mapper파일정보 참조                                                   |
+| SqlSessionTemplate                      | - SQL실행 및 트렌잭션 관리를 실행하는 핵심적인 클래스 <br> - SqlSession 인터페이스 구현 / Thread-safe 함 <br > - Spring Bean으로 등록해야 함 <br> - constructor injection으로 SqlSessionFactory의 ref를 주입받음 |
+| mapping 파일 <br> (userMapper.xml)      | - SQL문과 OR Mapping 설정                                                                                                                                                                                        |
+| SpringBean 설정파일 <br > (beans.xml)   | - SqlSessionFactoryBean을 Bean으로 등록할 때, DataSource정보와 MyBatis Config 파일정보, Mapping 파일 정보를 함께 설정 <br> SqlSessionTemplate을 Bean으로 등록                                                    |
+
+**SqlSessionFactory를 구현 => SqlSessionFactoryBean**
+**SqlSession을 구현 => SqlSessionTemplcate**
+
+[ 참조 : 레이어드 아키텍처 시각화 ]
+![layered_architecture](./imgs/layered_archi.png)
 
 <br><br>
 
-### 3. MyBatis 적용 코드
+### 3. MyBatis & MyBatis-Spring 적용 코드
 
 1. Maven 의존성 설정하기 [java 프로젝트 내 pom.xml]
    - mybatis / mybatis-spring / commons-dbcp2 (dataSource용)
@@ -269,7 +280,9 @@ public class DataSourceTest {
 
 7. 다른 테이블을 참조하는 SQL문 [studentMapper.xml]
    - resultMap의 property와 테이블 컬럼의 값이 다를 시 id와 column으로 매핑
-   - 참조하는 다른 테이블은 association으로 받아옴
+   - 1:1로 참조하는 다른 테이블은 `<association>`으로 / 1:n 관계는 `<collection>`으로 받아옴
+   - 마이바티스로 쿼리문을 넣을때 자동으로 getMethod를 불러서 객체에 인자로 전달해줌
+   - 그 후 받은 getMethod를 이용해 setMethod(property)로 새로운 객체 생성
 
 ```xml
  <mapper namespace="studentNS">
@@ -343,7 +356,7 @@ public class DataSourceTest {
 	List<StudentVO> List = session.selectList("studentNS.selectStudentCourseStatusById");
 	for (StudentVO courseVO : List) {
 		System.out.println(courseVO); }
-	}
+    }
 ```
 
 [Console 결과값]
