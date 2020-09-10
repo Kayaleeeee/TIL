@@ -88,6 +88,13 @@
 **SqlSessionFactory를 구현 => SqlSessionFactoryBean**
 **SqlSession을 구현 => SqlSessionTemplcate**
 
+<br>
+
+[ 참조 : 컴포넌트 구성 시각화 ]
+![componentMap](./imgs/componentMap.png)
+
+<br>
+
 [ 참조 : 레이어드 아키텍처 시각화 ]
 ![layered_architecture](./imgs/layered_archi.png)
 
@@ -120,7 +127,7 @@
 
 ```
 
-2. 자바 프로젝트 [src > config > spring_beans.xml]
+2. 자바 프로젝트 [ src > config > spring_beans.xml ]
    - Spring Bean 설정 파일
 
 ```xml
@@ -156,7 +163,7 @@
 </bean>
 ```
 
-3. value 값만 모아둔 properties 파일 [values.properties]
+3. value 값만 모아둔 properties 파일 [ src > config > values.properties]
 
 ```txt
 db.driverClass=oracle.jdbc.OracleDriver
@@ -192,7 +199,7 @@ db.password=tiger
    - tag로 insert, update, select, delete 지정
    - **NameSpace란?**
      - `<mapper></mapper>`로 Mapping 파일로 기재된 SQL을 호출하기 위함
-     - Mapper인터페이스 없이는 SqlSession의 인자를 "네임스페이스.SQL ID"로 지정해야함
+     <!-- - Mapper인터페이스 없이는 SqlSession의 인자를 "네임스페이스.SQL ID"로 지정해야함 -->
      - 네임스페이스은 간단한 이름으로 인터페이스 바인딩을 가능하게 하여 코드가 깔끔해짐
      <!-- - spring bean 설정파일에 mapperlocaions를 등록하고, 사용할 Mapper.xml 위에 네임스페이스를 설정하여 사용 -->
 
