@@ -10,7 +10,7 @@
 ### Servlet 서블릿이란?
 
 > - 웹에서 들어온 요청에 따라 동적인 처리가 가능하도록 구성된 클래스
-> - Java 코드 안에 HTML코드를 넣어서 작성험
+> - Java 코드 안에 HTML코드를 넣어서 작성함
 > - DB와 통신하고 비지니스 로직과 데이터를 관리하는 작업에 유용
 > - 서블릿이 수정된 경우 전체 코드를 업데이트하고 재배포해줘야 하는 단점이 있음
 
@@ -19,7 +19,7 @@
 ### JSP(Java Server Pages)란?
 
 > - HTML코드 안에 Java코드를 넣어서 작성함
-> - JSP를 통해 HTML과 사용자가 입력한 데이터 (Http request)와 같은 동적인 데이터를 함께 사용 할 수 있음
+> - JSP를 통해 HTML과 사용자가 입력한 데이터 (http request)와 같은 동적인 데이터를 함께 사용 할 수 있음
 > - JSP 실행 시 WAS에서 JSP를 서블릿으로 자동 변환함
 >   Tomcat(WAS)의 내장 객체 사용 가능 (response, session, out, applicaion)
 
@@ -40,6 +40,8 @@
    > - 서블렛 설정해주는 파일
 
 ![xml](./imgs/servlet_2.png)
+
+[web.xml]
 
 ```xml
   <!-- MySevlet Class 설정 -->
