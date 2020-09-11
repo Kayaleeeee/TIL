@@ -23,6 +23,11 @@
 > - JSP 실행 시 WAS에서 JSP를 서블릿으로 자동 변환함
 >   Tomcat(WAS)의 내장 객체 사용 가능 (response, session, out, applicaion)
 
+<br>
+ 
+  
+   Servlet 혹은 JSP만 단독으로 쓰면  각각의 단점들이 너무 명확하게 보이기 때문에 <br> 보통 **Servlet은 Controller / JSP는 View** 역할을 하도록 구성하는 것이 일반적
+
 <br><br>
 
 ### 🛠 서블릿 사용하기
