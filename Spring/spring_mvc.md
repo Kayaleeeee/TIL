@@ -205,8 +205,6 @@ pageEncoding="UTF-8"%>
 
 **[UserController.java]**
 
-> -
-
 ```java
 //index <a href="getUserList.do">사용자 리스트</a>와 매핑
 @RequestMapping("/getUserList.do")
