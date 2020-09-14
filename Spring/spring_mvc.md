@@ -87,6 +87,8 @@
 
 1. 클라이언트의 요청을 받는 DispatcherServlet (=FrontController)을 web.xml에 설정하기
 
+[web.xml]
+
 ```xml
 <!-- DispatcherServlet 설정해주기~! -->
 <servlet>
@@ -159,7 +161,9 @@ public class UserController {
 	//만약 String userid로 변수 명을 같게 설정하면 필요 없음
         // == public ModelAndView getUser(String userid)
 	public ModelAndView getUser(@RequestParam("userid") String id) {
+
 		UserVO user = service.getUser(id);
+
         //ModelAndView(View 페이지 명, Model명, 객체명)
 		return new ModelAndView("userDetail.jsp", "uservo", user);
 	}
@@ -197,6 +201,8 @@ pageEncoding="UTF-8"%>
 [웹 브라우저 :index]
 
 ![](./imgs/mvc/index.png)
+
+<br>
 
 [웹 브라우저 :Lee 조회한 userDetail]
 ![](./imgs/mvc/search.png)
@@ -237,6 +243,7 @@ public String getUsers(Model model) {
         <th>USERID</th>
         <th>NAME</th>
       </tr>
+
       <!-- JSTL 사용 -->
       <!-- Controller에서 넘겨준 users(리스트)를 items로 받고-->
       <!-- 리스트 구성요소를 user객체로 받아 get매소드 실행-->
@@ -282,5 +289,49 @@ public String getUsers(Model model) {
 </html>
 ```
 
+<br>
+
 [웹 브라우저: 리스트의 이름 클릭 시]
 ![](./imgs/mvc/userSearch.png)
+
+<br>
+
+5.  코드 내에서 .jsp 확장자를 생략하고 이미 spring\*beans.xml에서 컴포넌트로 등록된 Controller를 재설정하도록 xml 설정
+    [spring_beans***mvc**.xml]
+
+```xml
+	<!-- JSP 확장명 생략할 수 있도록 설정 -->
+	<!-- 아래 주석은 Controller에서 포워딩 되는 .jsp 확장자를 생략할 수 있다. -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+
+	<!-- component를 스캔해주는 설정 / controller관련만 어노테이션만 컴포넌트로 스캔하도록 여기서 설정 -->
+	<!-- 이미 설정되어 있던 spirng_beans에서는 Controller를 exclude하는 설정을 해줘야 함  -->
+
+	<context:component-scan
+		base-package="myspring.user">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+```
+
+<br>
+
+[spring_beans.xml]
+
+- 이미 컴포넌트 스캔시 Controller가 포함되어있었음
+- srping_beans_mvc.xml에서 Controller만 다시 끌어와서 설정해줬기 때문에 여기서는 Controller를 exclude해줌
+
+```xml
+<!-- Component AutoScanning을 위한 설정 -->
+<!-- @Repository or @Component로 빈이 추가 될때 빈을 스캐닝할 패키지를 연결해줌  -->
+<context:component-scan base-package="myspring.di.annotaion, myspring.user">
+	<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+</context:component-scan>
+
+```
