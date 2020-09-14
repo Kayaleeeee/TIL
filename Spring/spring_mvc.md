@@ -76,7 +76,7 @@
 
 <br><br>
 
-### 🧚 Spring MVC 작성 하기
+### 🧚 Spring MVC 작성하기 : 조회 기능
 
 **[목표]**
 
@@ -114,12 +114,11 @@
 
 **[Controller를 위한 핵심 어노테이션]**
 
-| 구성요소        | 설명                                          |
-| --------------- | --------------------------------------------- |
-| @Controller     | Controller 클래스 정의                        |
-| @RequestMapping | HTTP요청을 처리할 Controller 매소드 정의      |
-| @RequestParam   | HTTP 요청에 포함된 파라미터 참조시 사용       |
-| @ModelAttribute | HTTP 요청으로 들어온 인자를 모델객체로 바인딩 |
+| 구성요소        | 설명                                     |
+| --------------- | ---------------------------------------- |
+| @Controller     | Controller 클래스 정의                   |
+| @RequestMapping | HTTP요청을 처리할 Controller 매소드 정의 |
+| @RequestParam   | HTTP 요청에 포함된 파라미터 참조시 사용  |
 
 <br>
 
@@ -333,5 +332,128 @@ public String getUsers(Model model) {
 	<context:exclude-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 </context:component-scan>
+```
+
+<br><br>
+
+### 🧚‍♀️ Spring MVC 작성하기 2 : 삽입 기능
+
+<br>
+
+| 구성요소        | 설명                                                                                                                                     |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| @ModelAttribute | - HTTP 요청으로 들어온 인자를 모델객체로 바인딩 <br> - JSP에서 input값의 value를 설정된 name을 통해 VO객체에 알아서 저장해주는 역할을 함 |
+
+<br>
+
+**[UserController.java]**
+
+```java
+	@RequestMapping("/insertUserForm.do")
+  //insertUserForm에 성별 리스트와 도시 리스트 보내주기
+	public String insertUserFor(HttpSession session) {
+
+		List<String> genderList = new ArrayList<String>();
+		genderList.add("남");
+		genderList.add("여");
+
+		List<String> cityList = new ArrayList<String>();
+		cityList.add("서울");
+		cityList.add("부산");
+		cityList.add("대구");
+		cityList.add("제주");
+
+		//session에 genderList와 cityList 저장하기
+		//setAttribute(name city 벨류값, 저장할 List)
+		session.setAttribute("gender", genderList);
+		session.setAttribute("city",cityList);
+
+		//userInsser.jsp로 리턴해주기
+		return "userInsert";
+	}
+
+	@RequestMapping("/insertUser.do")
+
+  //insertUserForm에서 넣어준 값이 @ModelAttribute를 통해 UserVO에
+  //자동으로 저장되어 그 값으로 객체가 생성됨
+
+	public String insertUser(@ModelAttribute UserVO user) {
+		//생성된 UserVO user 등록요청
+		service.insertUser(user);
+
+		//등록 후 사용자 출력
+		return "redirect:/getUserList.do";
+	}
+```
+
+<br>
+
+[userInsert.jsp]
+
+```html
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<html>
+<head>
+<title>사용자 정보 등록 </title>
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container">
+	<h2 class="text-center">사용자정보 등록 </h2>
+	  <div>
+	    <form method="post" action="insertUser.do"  >
+            <table  class="table table-bordered table table-hover">
+		<tr>
+		  <td>아이디 : </td>
+		  <td><input type="text" name="userId"  /></td>
+		</tr>
+		<tr>
+		  <td>이름 : </td>
+		  <td><input type="text" name="name" /></td>
+		</tr>
+		<tr>
+		  <td>성별 : </td>
+		  <td><c:forEach var="genderName" items="${sessionScope.gender}">
+		    <input type="radio" name="gender" value="${genderName}">${genderName}
+                </c:forEach></td>
+                </tr>
+		<tr>
+		  <td>거주지 : </td>
+		  <td><select name="city">
+		    <c:forEach var="cityName" items="${sessionScope.city}">
+			  <option value="${cityName}">${cityName}</option>
+		    </c:forEach>
+                  </select></td>
+		</tr>
+		<tr><td colspan="2"  class="text-center">
+                 <input type="submit" value="등록" /></td>
+                </tr>
+		<tr>
+		<td colspan="2" class="text-center"><a href="getUserList.do">사용자 목록 보기 </a></td>
+
+		</tr>
+	</table>
+	  </form>
+	  </div>
+	</div>
+</body>
+</html>
 
 ```
+
+[웹 페이지 : userInsert.jsp]
+
+![](./imgs/mvc/insertForm.png)
+
+<br>
+
+[웹 페이지 : userList.jsp]
+
+- 유저 등록 후 유저 리스트로 redirect
+
+![](./imgs/mvc/insertList.png)
