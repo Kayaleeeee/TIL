@@ -51,7 +51,7 @@
 
 <br>
 
-#### 3. @SpringBootApplication으로 컴포넌트 자동 설정
+#### 3. @SpringBootApplication으로 컴포넌트를 자동 설정해줌
 
     - @SpringBootApplication으로 Bean을 자동 설정해줌
     - 1단계 : @ComponentScan로 Project 생성시 정해준 default 패키지부터 스캐닝하며 등록 할 빈을 찾음
@@ -93,13 +93,14 @@ server.port=8086
 ### 프로젝트 구조 이해하기
 
 [구조]
-| 폴더명 | 기능 |
-|-------|-----|
-|src/main/java| - 자바 Source파일들이 위치하는 디폴트 패키지 <br> - 클래스와 패키지를 **꼭** 이 위치에 만들어야 component scan과 빈 선언 가능 |
-|src/main/resources/applicaion.properties | - 스프링 부트에서 사용할 프로퍼티 값을 모아둠 |
-|src/main/resources/static | - HTML / CSS 같은 정적 파일 위치 |
-|src/main/resources/templates | - jsp, thymeleaf 같은 동적파일|
-|src/test/java| - 자바 테스트 파일들 |
+
+| 폴더명                                   | 기능                                                                                                                          |
+| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| src/main/java                            | - 자바 Source파일들이 위치하는 디폴트 패키지 <br> - 클래스와 패키지를 **꼭** 이 위치에 만들어야 component scan과 빈 선언 가능 |
+| src/main/resources/applicaion.properties | - 스프링 부트에서 사용할 프로퍼티 값을 모아둠                                                                                 |
+| src/main/resources/static                | - HTML / CSS 같은 정적 파일 위치                                                                                              |
+| src/main/resources/templates             | - jsp, thymeleaf 같은 동적파일                                                                                                |
+| src/test/java                            | - 자바 테스트 파일들                                                                                                          |
 
 ![](./imgs/SpringBoot_4.png)
 
