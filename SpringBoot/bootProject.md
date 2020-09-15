@@ -162,6 +162,7 @@ public class MyRunner implements ApplicationRunner {
 ```
 
 [콘솔 출력]
+
 ![](./imgs/2.console.png)
 
 <br><br>
