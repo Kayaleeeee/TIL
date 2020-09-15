@@ -1,10 +1,8 @@
-# 🛰 Spring Boot 스프링 부트 사용하기
+# 🛰 Spring Boot 스프링 부트 환경설정
 
 [목표]
 
-- 스프링부트를 사용하여 간단한 웹 페이지 만들기
-- 스프링부트와 MairaDB 연동하기
-- 스프링 부트 테스트 이용하기
+- 스프링부트를 웹 어플리케이션 타입, 런타임 환경관리, 환경 변수 설정하기
 
 <br>
 
@@ -177,7 +175,7 @@ public class MyRunner implements ApplicationRunner {
 
 <br>
 
-- Test/Prod Configuration Class 작성
+**Test/Prod Configuration Class 작성**
 
 [ProdConfig.java] : 서비스 운영시 사용할 Config class
 
@@ -314,6 +312,8 @@ public class MyRunner implements ApplicationRunner {
     <artifactId>spring-boot-devtools</artifactId>
 </dependency>
 ```
+
+[추가기능]
 
 : 리스타트 하고 싶지 않은 리소스는? spring.devtools.restart.exclude
 

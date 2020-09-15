@@ -47,4 +47,5 @@
 <br>
 
 - [🌲 **Spring Boot** ]()
-- - [- Spring Boot 스프링 부트 기초](./SpringBoot/bootBasic.md)
+- - [- 스프링 부트 기초](./SpringBoot/bootBasic.md)
+- - [- 스프링 부트 환경설정](./SpringBoot/bootProject.md)
