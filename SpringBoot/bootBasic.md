@@ -2,7 +2,8 @@
 
 [목표]
 
-- 스프링 부트의 구조를 이해하고 환경 설정하기
+- 스프링 부트의 구조를 이해하기
+- 스프링 부트 프로젝트 생성하기
 
 <br >
 
@@ -104,3 +105,25 @@ server.port=8086
 
 <br>
 <br>
+
+### index.html 띄우기
+
+> - src/main/resource/static에 index.html추가 후 서버 실행
+
+[index.html]
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+  </head>
+  <body>
+    <h1>HELLO EVERYONE</h1>
+    <h2>WELCOME</h2>
+  </body>
+</html>
+```
+
+![](./imgs/SpringBoot_5.png)
