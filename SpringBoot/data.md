@@ -72,7 +72,7 @@ public class DBRunner implements ApplicationRunner{
 
 <br>
 
-#### 2. 웹 브라우저 : H2 웹페이지에서 DB 관리 가능
+#### 2. 웹 브라우저 : H2 DB 관리 가능
 
 localhost:8087/h2-console로 접속
 
@@ -167,12 +167,21 @@ use spring_db;
 
 ##### >>> 의존성 추가하기
 
-[pom.xml] : Spring-Data-JPA 의존성 추가
+[pom.xml] : Spring-Data-JPA와 spring-boot-starter-test 의존성 추가
 
 ```xml
+<!-- Spring Data JPA -->
 <dependency>
- <groupId>org.springframework.boot</groupId>
- <artifactId>spring-boot-starter-data-jpa</artifactId>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+
+<!-- Spring Boot Starter Test -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-test</artifactId>
+    <!-- scope test는 test directory안에서만 의존성이 동작한다는 뜻 -->
+    <scope>test</scope>
 </dependency>
 ```
 
@@ -247,16 +256,25 @@ public class Account {
 
 [AccountRepository.java] : Repository 인터페이스 작성
 
-> - AccountRepository의 구현클래스를 따로 작성하지 않아도 Spring-Data-JPA가 자동적으로 해당 문자열
->   username에 대한 인수를 받아 자동적으로 DB Table에 매핑
+> - AccountRepository의 구현클래스를 따로 작성하지 않아도 Spring-Data-JPA가 자동적으로 해당 문자열 username에 대한 인수를 받아 자동적으로 DB Table에 매핑
 > - JpaRepository<엔티티 클래스, 프라이머리 키 타입>
-> - JpaRepository의 상위 객체 CrudRepository가 (save, findOne, findAll) 처리
+> - JpaRepository의 상위 객체 CrudRepository가 이미 여러 매소드를 구현해 놓기 때문에 없는것들만 여기에 저장해둠
+> - 참조 : https://attacomsian.com/blog/spring-data-jpa-auditing#further-reading
+
+**CrudRepository** 구현 메소드들:
+
+- save(), saveAll()
+- findById(), findAll(), findAllById()
+- count()
+- delete(), deleteById(), deleteAll()
+
+<br>
 
 ```java
 public interface AccountRepository extends JpaRepository<Account, Long>{
 
-	//findBy(column명)
-	Account findByUsername(String username);
+    //findBy(column명)
+    Account findByUsername(String username);
 }
 ```
 
@@ -276,7 +294,7 @@ spring.jpa.show-sql=true
 
 **1. create**
 
-> JPA가 DB와 상호작용할 때 기존에 있던 스키마(테이블)을 삭제하고 새로 만드는 것을 뜻함
+> JPA가 DB와 상호작용할 때 기존에 있던 스키마(테이블)을 삭제하고 새로 만듬
 
 **2. create-drop**
 
@@ -284,12 +302,12 @@ spring.jpa.show-sql=true
 
 **3. update**
 
-> 기존 스키마는 유지하고, 새로운 것만 추가하고, 기존의 데이터도 유지한다. 변경된 부분만 반영함
+> 기존 스키마는 유지하고, 새로운 것만 추가하고, 기존의 데이터도 유지/ 변경된 부분만 반영함
 > 주로 개발 할 때 적합
 
 **4.validate**
 
-> 엔티티와 테이블이 정상 매핑 되어 있는지를 검증합니다.
+> 엔티티와 테이블이 정상 매핑 되어 있는지를 검증
 
 **spring.jpa.show-sql=true**
 
@@ -320,6 +338,9 @@ public class AppRepoTest {
 }
 ```
 
+[콘솔] : hibernate가 쿼리문을 실행
+![](./imgs/2.hibernate.png)
+
 [jUnit 실행결과] : 정상 작동
 
 ![](./imgs/2.junit.png)
@@ -327,3 +348,185 @@ public class AppRepoTest {
 [table확인] : 추가한 데이터 확인
 
 ![](./imgs/2.teminal2.png)
+
+<br>
+
+#### + ddl-auto : validate 확인해보기
+
+[applicaion.properties]
+
+```xml
+#SQL 설정
+spring.jpa.hibernate.ddl-auto=validate
+spring.jpa.show-sql=true
+```
+
+[Account.java] : email값 추가해보기
+
+```java
+@Entity
+public class Account {
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	//primary key만들기
+	private Long id;
+
+	@Column(unique = true)
+	private String username;
+
+	@Column
+	private String password;
+
+	@Column
+	private String email;
+
+	public String getEmail() {
+		return email;
+	}
+
+    (...)
+}
+```
+
+[src/test/java/AppRepoTest.java] : 다시 사용자 추가 가능한지 확인 / 코드 수정없음
+
+[콘솔 에러] : validate로 변경하고 email추가 시, 콘솔에 에러 발생
+
+![](./imgs/2.validate.png)
+
+[applicaion.properties] : 다시 update로 변경시 정상 작동
+
+```xml
+#SQL 설정
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+```
+
+[데이터 확인] : email column 생성
+![](./imgs/2.terminal3.png)
+
+<br>
+
+#### + Optional 객체 사용해보기
+
+> - **Optional 객체 반환**
+> - Java8은 함수형 언어의 접근 방식에서 영감을 받아 java.util.Optional<T>라는 새로운 클래스를 도입
+> - **Optional**: “존재할 수도 있지만 않 할 수도 있는 객체”, ”null이 될 수도 있는 객체” 를 감싸고 있는 일종의 래퍼 클래스
+> - 명시적으로 해당 변수가 null일 수도 있다는 가능성을 표현히여 불필요한 NullPointException 방어 로직을 줄일 수 있음
+> - Optional에 저장된 객체의 값이 있으면 True 없으면 null(False)
+
+<br>
+
+#### username과 id로 테이블 조회 해보기
+
+[AccountRepository.java]
+
+```java
+public interface AccountRepository extends JpaRepository<Account, Long>{
+	Account findByUsername(String username);
+
+    //optional 추가
+    // Optional<객체> : 객체는 정상적일수도, null일수도
+	Optional<Account> findByEmail(String email);
+}
+```
+
+[Test.java] :
+
+```java
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+
+public class AppRepoTest {
+
+	@Autowired
+	private AccountRepository repository;
+
+	@Test
+	public void finder() {
+        //table에 없는 username 불러보기
+        //null값 출력
+	Account account = repository.findByUsername("lambda2");
+	System.out.println(account);
+
+        //Optional에 저장된 Account객체의 값이 있으면
+        // TrueOptional에 저장된 Account객체의 값이 없으면 (null) False
+
+	Optional<Account> optional = repository.findById(1L);
+	System.out.println(optional.isPresent());
+	}
+}
+```
+
+[콘솔 출력]
+![](./imgs/2.optional1.png)
+
+[Test.java] : Optional적용 후 없는 Email값 찾아보기
+
+```java
+@RunWith(SpringRunner.class)
+@SpringBootTest
+
+public class AppRepoTest {
+	@Autowired
+	private AccountRepository repository;
+
+	@Test
+	public void finder() {
+        //table에 없는 ID 불러보기
+        //null값 출력
+	Account account = repository.findByUsername("lambda2");
+	System.out.println(account);
+
+        //id가 1번인 account객체가 존재하는지 optional이 출력
+        //true
+	Optional<Account> optional = repository.findById(1L);
+	System.out.println(optional.isPresent());
+
+
+        // <요청한 아이디가 있으면 Account객체 반환, 없으면 예외 발생하도록 설정>
+
+        // optional 설정 후 받아오기
+	if(optional.isPresent()) {
+	    Account account2 = optional.get();
+	    System.out.println(account2);
+        //콘솔 Print
+        // optional.get() : Account [id=1, username=Spring, password=1234]
+	}
+
+        //없는 이메일 주소로 찾아보기
+	Optional<Account> optEmail = repository.findByEmail("lambda1@gmail.com");
+
+	//Supplier 함수형 인터페이스추상 메소드 T get()사용
+	Account account3 = optEmail.orElseThrow(()-> new RuntimeException("요청한 이메일 주소를 가진 Account가 없습니다. "));
+	System.out.println(account3);
+	}
+}
+```
+
+[jUnit Test결과] : 예외 처리 발생
+![](./imgs/2.optional2.png)
+
+<br>
+
+#### Eamil값 업데이트 해보기
+
+[test.java] : 업데이트 메소드 추가 후 실행
+
+```java
+@Test
+public void update() {
+    Optional<Account> optFindById = repository.findById(2L);
+
+    //요청한 아이디와 일치하는 객치가 있을 경우
+    if(optFindById.isPresent()) {
+	Account account = optFindById.get();
+	account.setEmail("changed@email.com");
+	repository.save(account);
+	}
+}
+```
+
+[콘솔 출력] : Email 값이 null=> changed@email.com으로 변경
+
+![](./imgs/2.update.png)
