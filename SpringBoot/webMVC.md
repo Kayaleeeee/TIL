@@ -314,6 +314,7 @@ public Users getUserxml() {
 - Users의 @JacksonXmlElementWrapper(useWrapping = false)를 주석처리 할 경우
 
 ```java
+@JacksonXmlRootElement
 public class Users implements Serializable {
 	private static final long serialVersionUID = 22L;
 	@JacksonXmlProperty(localName = "User")
