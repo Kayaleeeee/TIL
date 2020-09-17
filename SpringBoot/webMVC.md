@@ -1,5 +1,10 @@
 # 🏋️‍♀️ Web MVC 만들기
 
+[목표]
+
+- 스프링 부트로 간단한 Restful Web 경로를 설정하기
+- JSON 혹은 XML로 데이터 연결하기
+
 ### Spring Boot 스프링부트 Web MVC
 
 > - **개발자가 하지 않아도 자동으로 Spring MVC 설정을 해줌**
