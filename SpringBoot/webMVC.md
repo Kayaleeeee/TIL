@@ -242,3 +242,97 @@ https://www.postman.com/
 ![](./imgs/bootMVC/postman_del4.png)
 
 <br>
+<br>
+
+#### 3-1. RestController 변경 (XML)
+
+> - Json으로 설정했던 getUsers를 XML로 설정 해보기
+> - **produces = { "application/xml" }**
+> - produces 설정 안하면 기본 json
+> - xml converter 의존성 추가해줘야함
+
+```java
+@RequestMapping(value = "/usersXml", produces = { "application/xml" })
+public List<User> getUsersXml() {
+	return userRepo.findAll();
+}
+```
+
+[pom.xml]
+
+```xml
+<!-- xml converter -->
+<dependency>
+	<groupId>com.fasterxml.jackson.dataformat</groupId>
+	<artifactId>jackson-dataformat-xml</artifactId>
+	<version>2.9.6</version>
+</dependency>
+```
+
+<br>
+
+#### Postman에서 확인하기
+
+[ /users 불러오기] : json형태에서 html로 바뀜
+
+![](./imgs/bootMVC/xml1.png)
+
+<br>
+
+[User.java] : @JacksonXmlProperty로 attribute 지정을 해줌
+
+![](./imgs/bootMVC/xml3.png)
+
+[postman] : id가 속성값으로 바뀜
+
+![](./imgs/bootMVC/xml2.png)
+
+<br>
+
+[entity/Users.java 추가] : `<item></item>`을 `<User></User>`객체로
+
+![](./imgs/bootMVC/xml6.png)
+
+[RestController의 getUsers를 변경]
+
+```java
+@RequestMapping(value = "/usersXml", produces = { "application/xml" })
+public Users getUserxml() {
+	Users userXml = new Users();
+	userXml.setUsers(userRepo.findAll());
+	return userXml;
+}
+```
+
+[postman 변경 값 확인]
+![](./imgs/bootMVC/xml4.png)
+
+<br>
+
+[Users.java]
+
+- Users의 @JacksonXmlElementWrapper(useWrapping = false)를 주석처리 할 경우
+
+```java
+public class Users implements Serializable {
+	private static final long serialVersionUID = 22L;
+	@JacksonXmlProperty(localName = "User")
+	// @JacksonXmlElementWrapper(useWrapping = false)
+	private List<User> users = new ArrayList<>();
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+}
+```
+
+[postman] : `<Users>`안에 `<User></User>`로 한 번 더 감싸짐
+![](./imgs/bootMVC/xml5.png)
+
+<br>
+<br>
+<br>
