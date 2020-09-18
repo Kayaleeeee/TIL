@@ -38,7 +38,7 @@
 
 <br>
 
-##### - HTTP 사용하기
+#### - HTTP 사용하기
 
 <br>
 
@@ -62,7 +62,7 @@
 
 <br><br>
 
-##### - CodeCentric의 Admin 사용하기
+#### - CodeCentric의 Admin 사용하기
 
 <br>
 
