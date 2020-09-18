@@ -129,7 +129,7 @@ public class UserThymController {
 <br>
 <br>
 
-#### 3. index.html와 mypage의 접근 권한 달리 하기
+#### 4. index.html와 mypage의 접근 권한 달리 하기
 
 **[SecurityConfig.java]** : WebSecurityConfigurerAdapter 상속 받아 configure 매소드 사용하기
 
@@ -168,7 +168,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 <br>
 
-#### 4. mypage에 로그아웃 구현하기
+#### 5. mypage에 로그아웃 구현하기
 
 **[SecurityConfig.java]** : 로그아웃 코드 추가
 
@@ -206,7 +206,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 <br>
 
-#### 5. DB의 유저 정보로 로그인 할 수 있도록 설정하기
+#### 6. DB의 유저 정보로 로그인 할 수 있도록 설정하기
 
 <br>
 
