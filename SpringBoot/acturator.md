@@ -1,4 +1,4 @@
-# 📢 Spring Boot Acturator 스프링 부트 엑추레이터
+# 📢 Spring Boot Acturator 스프링 부트 엑추레이터로 프로젝트 관리하기
 
 [목표]
 
