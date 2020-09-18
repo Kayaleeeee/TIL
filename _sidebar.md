@@ -52,3 +52,4 @@
 - - [- 데이터베이스 사용하기](./SpringBoot/data.md)
 - - [- Web MVC & Resful Web 구축하기](./SpringBoot/webMVC.md)
 - - [- Thymeleaf 사용하기](./SpringBoot/thymeleaf.md)
+- - [- Acturator로 프로젝트 관리하기](./SpringBoot/acturator.md)
