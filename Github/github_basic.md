@@ -1,4 +1,4 @@
-# Github TIL
+# Github 기초와 TIL 시작하기
 
 ## 1. TIL?
 
