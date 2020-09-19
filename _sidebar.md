@@ -7,6 +7,7 @@
     <br />
 - [🐈 **Github**]()
 - - [- 깃허브 기초](./Github/github_basic.md)
+- - [- 커밋 삭제하기](./Github/commit_delete.md)
     <br />
 - [🕶 **Docsify**]()
 - - [- Docsify blog 만들기](./docsify/docsify.md)
@@ -17,6 +18,11 @@
 - [🎊 **JavaScript**]()
 - - [- Async function](./JavaScript/async.md)
     <br />
+
+<!-- - [🧿 **React**]()
+- - [- React 시작하기](./React/start.md)
+
+    <br /> -->
 
 - [🍎 **Java** ]()
 - - [- Java 왕기초](./Java/basic.md)
