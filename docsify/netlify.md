@@ -59,7 +59,9 @@ netlify login
 ```
 
 <br>
+
 ### 배포할 폴더에서 Netlify init
+
 > init을 실행하면 터미널 창에서 자동으로 사이트 이름과 git repo를 고르는 것까지 쭉 도와준다
 
 ```bash
