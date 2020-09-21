@@ -6,7 +6,7 @@
 - - [- 마크다운 기초](./Markdown/basic_md.md)
     <br />
 - [🐈 **Github**]()
-- - [- 깃허브 기초](./Github/github_basic.md)
+- - [- 깃허브 기초 & TIL 시작하기](./Github/github_basic.md)
 - - [- 커밋 삭제하기](./Github/commit_delete.md)
     <br />
 - [🕶 **Docsify**]()
@@ -19,10 +19,10 @@
 - - [- Async function](./JavaScript/async.md)
     <br />
 
-<!-- - [🧿 **React**]()
+- [🧿 **React**]()
 - - [- React 시작하기](./React/start.md)
 
-    <br /> -->
+    <br />
 
 - [🍎 **Java** ]()
 - - [- Java 왕기초](./Java/basic.md)
