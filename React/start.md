@@ -60,3 +60,9 @@
 - hot-loader를 통하여 코드가 수정될때마다 자동으로 리로드 되게 함
 
 <br>
+
+### > 앱 실행하기 npm start
+
+![](./imgs/react.png)
+
+<br>
