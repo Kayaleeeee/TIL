@@ -210,10 +210,11 @@ public class StringPrinter implements Printer {
 <br>
 
 **[Bean등록과 설정 Annotaion]**
-| Annotaion | 기능 |
-|---------|----|
-| @Bean | - 새로운 빈 객체 제공시 사용 <br> - @Bean이 적용된 매소드의 이름이 Bean의 ID가 됨 <br> - @Component와 같은 역할이나 @Component는 클래스위에, @Bean은 매소드 위에 선언 |
-| @Configuration | - config Class 생성시 XML을 대체하는 역할 <br> - @Component처럼 빈 스캔으로 자동 검색됨 <br> - @Configuration을 선언한 클래스도 Bean으로 정의됨 (스프링 IoC로 인해)
+
+| Annotaion      | 기능                                                                                                                                                                  |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| @Bean          | - 새로운 빈 객체 제공시 사용 <br> - @Bean이 적용된 매소드의 이름이 Bean의 ID가 됨 <br> - @Component와 같은 역할이나 @Component는 클래스위에, @Bean은 매소드 위에 선언 |
+| @Configuration | - config Class 생성시 XML을 대체하는 역할 <br> - @Component처럼 빈 스캔으로 자동 검색됨 <br> - @Configuration을 선언한 클래스도 Bean으로 정의됨 (스프링 IoC로 인해)   |
 
 <br>
 
