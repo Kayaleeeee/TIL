@@ -128,6 +128,8 @@ spring:
 
 **1. command 창에 docker oracle 실행**
 
+> - Mac 오라클 도커 설치하기 : https://stophyun.tistory.com/190
+
 - 도커 run
 
 ```bash
