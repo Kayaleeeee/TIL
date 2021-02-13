@@ -33,6 +33,7 @@
 - [🤹‍♀️ **NextJs**]()
 - - [- 넥스트제이에스란? ](./NextJs/intro.md)
 - - [- 프로젝트 시작하기](./NextJs/startPj.md)
+- - [- Mobx 세팅하기](./NextJs/mobx.md)
 
     <br />
 
